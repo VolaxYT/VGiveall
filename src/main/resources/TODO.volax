@@ -1,0 +1,30 @@
+Commande pour start le giveaway (/giveaway start):
+    -> GUI
+    -> demander QUAND:
+        - soit maintenant
+        - soit plus tard
+            -> en GUI
+            -> demander le jour (ex: 10, 11, 12, 13, 14, 15)
+            -> demander l'heure-minute (ex: 18h, 18h30, 19h, 19h30)
+    -> demander QUI:
+        - soit @a (all)
+        - soit les personnes qui ont certaines permissions (ex: only certains grades)
+        - soit les personnes qui rejoignent le giveaway
+    -> demander QUOI:
+        - soit improvisation (commande /giveaway give par l'admin)
+        - soit prévu (commande /giveaway give par l'admin qui va enregistrer les items dans l'ordre pour le giveaway)
+    -> demander RYTHME:
+        - soit improvisation (commande /giveaway next par l'admin)
+        - soit prévu (GUI qui demande le temps entre chaque give)
+    -> annonce dans le chat
+
+Commande pour start un giveaway prévu pour plus tard maintenant (/giveaway forcestart <GIVEAWAY ID>
+
+Commande pour give des items aux joueurs (/giveaway give <ITEM> <MONTANT> [<GIVEAWAY ID>])
+    -> enregistrement de l'item, du montant, de la date et de la personne qui a effectué le give dans l'historique
+    -> possibilité de give des items à partir de l'ID, du nom de l'item ou de l'item que l'admin a dans sa main
+
+Commande pour stop le giveaway (/giveaway stop) -> annonce dans le chat
+
+    - histo des giveaway (avec GUI ingame:
+        - bdd
