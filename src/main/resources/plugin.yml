@@ -1,8 +1,11 @@
 name: VGiveaway
 main: fr.volax.vgiveaway.VGiveaway
-version: 1.0-snapshot
+version: 1.0-SNAPSHOT
 author: Volax
 api-version: 1.18
 database: false
 description: A minecraft plugin who manage all of giveable actions
 website: https://github.com/VolaxYT
+commands:
+  vgiveaway:
+    description: The main command of the plugin
