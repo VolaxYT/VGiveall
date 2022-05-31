@@ -1,6 +1,7 @@
 package fr.volax.vgiveaway;
 
 import fr.volax.vgiveaway.commands.VGiveawayCommand;
+import fr.volax.vgiveaway.menus.TimeMenu;
 import fr.volax.vgiveaway.utils.ConfigBuilder;
 import fr.volax.vgiveaway.utils.FileManager;
 import fr.volax.vgiveaway.utils.GuiBuilder;
@@ -12,8 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * VGiveaway for Minecraft 1.18!
@@ -40,6 +39,8 @@ public class VGiveaway extends JavaPlugin {
         this.getCommand("vgiveaway").setTabCompleter(new VGiveawayCommand());
 
         this.getServer().getPluginManager().registerEvents(new GuiManager(), this);
+
+        this.getGuiManager().addMenu(new TimeMenu());
 
         if(!debugFile.exists()) {
             try {
