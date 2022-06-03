@@ -1,4 +1,4 @@
-package fr.volax.vgiveaway.utils;
+package fr.volax.vgiveall.utils;
 
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;

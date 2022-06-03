@@ -1,6 +1,6 @@
-package fr.volax.vgiveaway.utils;
+package fr.volax.vgiveall.utils;
 
-import fr.volax.vgiveaway.VGiveaway;
+import fr.volax.vgiveall.VGiveall;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 
@@ -29,7 +29,7 @@ public class ConfigBuilder {
     }
 
     public double getDouble(String path) {
-        return VGiveaway.getInstance().getConfig().getDouble(path);
+        return VGiveall.getInstance().getConfig().getDouble(path);
     }
 
     public Boolean getBoolean(String path, String config){
@@ -58,21 +58,21 @@ public class ConfigBuilder {
     }
 
     public String getString(String path){
-        return VGiveaway.getInstance().getConfig().getString(path).replaceAll("&","§");
+        return VGiveall.getInstance().getConfig().getString(path).replaceAll("&","§");
     }
 
     public int getInt(String path){
-        return VGiveaway.getInstance().getConfig().getInt(path);
+        return VGiveall.getInstance().getConfig().getInt(path);
     }
 
     public boolean getBoolean(String path){
-        return VGiveaway.getInstance().getConfig().getBoolean(path);
+        return VGiveall.getInstance().getConfig().getBoolean(path);
     }
 
     public void set(String path, Object data){
-        VGiveaway.getInstance().getConfig().set(path, data);
-        VGiveaway.getInstance().saveConfig();
-        VGiveaway.getInstance().reloadConfig();
+        VGiveall.getInstance().getConfig().set(path, data);
+        VGiveall.getInstance().saveConfig();
+        VGiveall.getInstance().reloadConfig();
     }
 
     public void set(String path, Object data, String config){
@@ -82,11 +82,11 @@ public class ConfigBuilder {
     }
 
     public List<?> getList(String path){
-        return VGiveaway.getInstance().getConfig().getList(path);
+        return VGiveall.getInstance().getConfig().getList(path);
     }
 
     public Object get(String path){
-        return VGiveaway.getInstance().getConfig().get(path);
+        return VGiveall.getInstance().getConfig().get(path);
     }
 
     public Object get(String path, String config){
@@ -98,7 +98,7 @@ public class ConfigBuilder {
     }
 
     public List<String> getListString(String path){
-        return (List<String>) VGiveaway.getInstance().getConfig().getList(path);
+        return (List<String>) VGiveall.getInstance().getConfig().getList(path);
     }
 
     public List<String> getListString(String path, String config){
@@ -106,7 +106,7 @@ public class ConfigBuilder {
     }
 
     public List<Integer> getListInt(String path){
-        return (List<Integer>) VGiveaway.getInstance().getConfig().getList(path);
+        return (List<Integer>) VGiveall.getInstance().getConfig().getList(path);
     }
 
     public List<Integer> getListInt(String path, String config){

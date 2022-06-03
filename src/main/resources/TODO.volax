@@ -1,4 +1,4 @@
-Commande pour start le giveaway (/giveaway start):
+Commande pour start le giveall (/giveall start):
     -> GUI
     -> demander QUAND:
         - soit maintenant
@@ -9,22 +9,22 @@ Commande pour start le giveaway (/giveaway start):
     -> demander QUI:
         - soit @a (all)
         - soit les personnes qui ont certaines permissions (ex: only certains grades)
-        - soit les personnes qui rejoignent le giveaway
+        - soit les personnes qui rejoignent le giveall
     -> demander QUOI:
-        - soit improvisation (commande /giveaway give par l'admin)
-        - soit prévu (commande /giveaway give par l'admin qui va enregistrer les items dans l'ordre pour le giveaway)
+        - soit improvisation (commande /giveall give par l'admin)
+        - soit prévu (commande /giveall give par l'admin qui va enregistrer les items dans l'ordre pour le giveall)
     -> demander RYTHME:
-        - soit improvisation (commande /giveaway next par l'admin)
+        - soit improvisation (commande /giveall next par l'admin)
         - soit prévu (GUI qui demande le temps entre chaque give)
     -> annonce dans le chat
 
-Commande pour start un giveaway prévu pour plus tard maintenant (/giveaway forcestart <GIVEAWAY ID>
+Commande pour start un giveall prévu pour plus tard maintenant (/giveall forcestart <GIVEAWAY ID>
 
-Commande pour give des items aux joueurs (/giveaway give <ITEM> <MONTANT> [<GIVEAWAY ID>])
+Commande pour give des items aux joueurs (/giveall give <ITEM> <MONTANT> [<GIVEAWAY ID>])
     -> enregistrement de l'item, du montant, de la date et de la personne qui a effectué le give dans l'historique
     -> possibilité de give des items à partir de l'ID, du nom de l'item ou de l'item que l'admin a dans sa main
 
-Commande pour stop le giveaway (/giveaway stop) -> annonce dans le chat
+Commande pour stop le giveall (/giveall stop) -> annonce dans le chat
 
-    - histo des giveaway (avec GUI ingame:
-        - bdd
+histo des giveall (avec GUI ingame):
+    -> bdd

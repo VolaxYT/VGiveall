@@ -1,10 +1,10 @@
-package fr.volax.vgiveaway;
+package fr.volax.vgiveall;
 
-import fr.volax.vgiveaway.commands.VGiveawayCommand;
-import fr.volax.vgiveaway.utils.ConfigBuilder;
-import fr.volax.vgiveaway.utils.FileManager;
-import fr.volax.vgiveaway.utils.GuiBuilder;
-import fr.volax.vgiveaway.utils.GuiManager;
+import fr.volax.vgiveall.commands.VGiveallCommand;
+import fr.volax.vgiveall.utils.ConfigBuilder;
+import fr.volax.vgiveall.utils.FileManager;
+import fr.volax.vgiveall.utils.GuiBuilder;
+import fr.volax.vgiveall.utils.GuiManager;
 import lombok.Getter;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -12,17 +12,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
- * VGiveaway for Minecraft 1.18!
- * The project is on https://github.com/VolaxYT/VGiveaway/
+ * VGiveall for Minecraft 1.18!
+ * The project is on https://github.com/VolaxYT/VGiveall/
  *
  * @author Volax
  */
-public class VGiveaway extends JavaPlugin {
-    @Getter private static VGiveaway instance;
+public class VGiveall extends JavaPlugin {
+    @Getter private static VGiveall instance;
     @Getter private GuiManager guiManager;
     @Getter private Map<Class<? extends GuiBuilder>, GuiBuilder> registeredMenus;
     public File debugFile;
@@ -36,8 +34,8 @@ public class VGiveaway extends JavaPlugin {
         ConfigBuilder configBuilder = new ConfigBuilder(new FileManager(this));
         this.saveDefaultConfig();
 
-        this.getCommand("giveaway").setExecutor(new VGiveawayCommand());
-        this.getCommand("giveaway").setTabCompleter(new VGiveawayCommand());
+        this.getCommand("giveall").setExecutor(new VGiveallCommand());
+        this.getCommand("giveall").setTabCompleter(new VGiveallCommand());
 
         this.getServer().getPluginManager().registerEvents(new GuiManager(), this);
 
@@ -49,6 +47,6 @@ public class VGiveaway extends JavaPlugin {
             }
         }
 
-        this.getServer().getConsoleSender().sendMessage("§aVGiveaway " + this.getDescription().getVersion() + " launched successfully on a " + this.getServer().getVersion() + " server.");
+        this.getServer().getConsoleSender().sendMessage("§a"+ this.getDescription().getName() + " " + this.getDescription().getVersion() + " launched successfully on a " + this.getServer().getVersion() + " server.");
     }
 }

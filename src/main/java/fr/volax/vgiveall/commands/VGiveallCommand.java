@@ -1,6 +1,6 @@
-package fr.volax.vgiveaway.commands;
+package fr.volax.vgiveall.commands;
 
-import fr.volax.vgiveaway.utils.ChatUtil;
+import fr.volax.vgiveall.utils.ChatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class VGiveawayCommand implements CommandExecutor, @Nullable TabCompleter {
+public class VGiveallCommand implements CommandExecutor, @Nullable TabCompleter {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
         if(!(sender instanceof Player)) return false;

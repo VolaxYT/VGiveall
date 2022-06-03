@@ -1,6 +1,6 @@
-package fr.volax.vgiveaway.utils;
+package fr.volax.vgiveall.utils;
 
-import fr.volax.vgiveaway.VGiveaway;
+import fr.volax.vgiveall.VGiveall;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,7 +19,7 @@ public class GuiManager implements Listener {
 
         if(event.getCurrentItem() == null) return;
 
-        VGiveaway.getInstance().getRegisteredMenus().values().stream()
+        VGiveall.getInstance().getRegisteredMenus().values().stream()
                 .filter(menu -> event.getView().getTitle().equalsIgnoreCase(menu.name()))
                 .forEach(menu -> {
                     menu.onClick(player, event.getInventory(), current, event.getSlot());
@@ -28,13 +28,13 @@ public class GuiManager implements Listener {
     }
 
     public void addMenu(GuiBuilder m){
-        VGiveaway.getInstance().getRegisteredMenus().put(m.getClass(), m);
+        VGiveall.getInstance().getRegisteredMenus().put(m.getClass(), m);
     }
 
     public void open(Player player, Class<? extends GuiBuilder> gClass){
-        if(!VGiveaway.getInstance().getRegisteredMenus().containsKey(gClass)) return;
+        if(!VGiveall.getInstance().getRegisteredMenus().containsKey(gClass)) return;
 
-        GuiBuilder menu = VGiveaway.getInstance().getRegisteredMenus().get(gClass);
+        GuiBuilder menu = VGiveall.getInstance().getRegisteredMenus().get(gClass);
         Inventory inv = Bukkit.createInventory(null, menu.getSize(), menu.name());
         menu.contents(player, inv);
 
@@ -43,6 +43,6 @@ public class GuiManager implements Listener {
             public void run() {
                 player.openInventory(inv);
             }
-        }.runTaskLater(VGiveaway.getInstance(), 1);
+        }.runTaskLater(VGiveall.getInstance(), 1);
     }
 }

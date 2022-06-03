@@ -1,6 +1,6 @@
-package fr.volax.vgiveaway.utils;
+package fr.volax.vgiveall.utils;
 
-import fr.volax.vgiveaway.VGiveaway;
+import fr.volax.vgiveall.VGiveall;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 
@@ -23,7 +23,7 @@ public class ChatUtil {
 
     public static void logMessage(String message){
         try {
-            PrintWriter writer = new PrintWriter(new FileWriter(VGiveaway.getInstance().debugFile, true), true);
+            PrintWriter writer = new PrintWriter(new FileWriter(VGiveall.getInstance().debugFile, true), true);
             if (!message.equals(""))
                 writer.write("[" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "] " + message.replaceAll("§e", "").replaceAll("§6", ""));
             writer.write(System.getProperty("line.separator"));

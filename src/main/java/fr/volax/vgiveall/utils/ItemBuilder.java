@@ -1,7 +1,6 @@
-package fr.volax.vgiveaway.utils;
+package fr.volax.vgiveall.utils;
 
 import org.bukkit.Color;
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;

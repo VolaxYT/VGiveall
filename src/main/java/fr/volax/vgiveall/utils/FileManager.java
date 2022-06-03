@@ -1,4 +1,4 @@
-package fr.volax.vgiveaway.utils;
+package fr.volax.vgiveall.utils;
 
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
