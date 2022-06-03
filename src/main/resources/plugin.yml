@@ -7,5 +7,5 @@ database: false
 description: A minecraft plugin who manage all of giveable actions
 website: https://github.com/VolaxYT
 commands:
-  vgiveaway:
+  giveaway:
     description: The main command of the plugin

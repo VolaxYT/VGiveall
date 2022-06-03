@@ -36,8 +36,8 @@ public class VGiveaway extends JavaPlugin {
         ConfigBuilder configBuilder = new ConfigBuilder(new FileManager(this));
         this.saveDefaultConfig();
 
-        this.getCommand("vgiveaway").setExecutor(new VGiveawayCommand());
-        this.getCommand("vgiveaway").setTabCompleter(new VGiveawayCommand());
+        this.getCommand("giveaway").setExecutor(new VGiveawayCommand());
+        this.getCommand("giveaway").setTabCompleter(new VGiveawayCommand());
 
         this.getServer().getPluginManager().registerEvents(new GuiManager(), this);
 
