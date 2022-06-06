@@ -23,6 +23,8 @@ public class VGiveall extends JavaPlugin {
     @Getter private static VGiveall instance;
     @Getter private GuiManager guiManager;
     @Getter private Map<Class<? extends GuiBuilder>, GuiBuilder> registeredMenus;
+
+    public File usersFolder;
     public File debugFile;
 
     public void onEnable() {
@@ -46,6 +48,11 @@ public class VGiveall extends JavaPlugin {
                 e.printStackTrace();
             }
         }
+
+        usersFolder = new File(String.valueOf(getDataFolder().getAbsoluteFile()) + "/users");
+
+        if(!usersFolder.exists())
+            usersFolder.mkdir();
 
         this.getServer().getConsoleSender().sendMessage("§a"+ this.getDescription().getName() + " " + this.getDescription().getVersion() + " launched successfully on a " + this.getServer().getVersion() + " server.");
     }

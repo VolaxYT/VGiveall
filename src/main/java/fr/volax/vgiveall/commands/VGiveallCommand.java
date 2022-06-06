@@ -46,6 +46,7 @@ public class VGiveallCommand implements CommandExecutor, @Nullable TabCompleter 
                         player1.getInventory().addItem(itemStack);
                     }
                     ChatUtil.sendMessage(player, "§eGive avec succès de §6" + args[3] + " " + args[2] + " §eà l'ensemble des joueurs.");
+                    ChatUtil.logMessage(player.getName() + " give => " + args[3] + " " + args[2] + " à @a");
                     return false;
                 }
                 return false;
