@@ -1,4 +1,4 @@
-package fr.volax.vgiveall.users;
+package fr.volax.vgiveall.givealls;
 
 import lombok.Data;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -8,16 +8,14 @@ import org.bukkit.entity.Player;
 import java.io.File;
 
 @Data
-public class User {
+public class Giveall {
     private final FileConfiguration fileConfiguration;
     private final File file;
-    private final Player player;
     private final String id;
 
-    public User(File file, Player player, String id) {
+    public Giveall(File file, String id) {
         this.fileConfiguration = YamlConfiguration.loadConfiguration(file);
         this.file = file;
-        this.player = player;
         this.id = id;
     }
 }

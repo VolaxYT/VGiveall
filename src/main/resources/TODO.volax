@@ -42,3 +42,5 @@ Commande /giveall getgiveall <ID>:
     chaque item qui l'a ajouté, quand et sa position dans le giveall, les conditions pour participer à l'event, l'heure et le jour
     -> Si giveall est à venir => possibilité d'annuler le giveall, de modifier la liste des items (quantité, position, des nouveaux items, retirer des items), de modifier les conditions pour
     participer au giveall, de reprogrammer le giveall (modifier l'heure et le jour)
+
+dev -> giveall id = 'GV_ + randomID(4)'
