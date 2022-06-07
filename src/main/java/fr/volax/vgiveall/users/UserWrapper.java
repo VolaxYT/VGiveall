@@ -4,7 +4,6 @@ import fr.volax.vgiveall.VGiveall;
 import fr.volax.vgiveall.utils.ChatUtil;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
@@ -22,7 +21,7 @@ public class UserWrapper {
         if(!userFile.exists()){
             try {
                 userFile.createNewFile();
-                ChatUtil.logMessage("Creation of " + uuid.toString() + "'s folder at " + userFile.getAbsolutePath().toString());
+                ChatUtil.logMessage("Creation of " + uuid + "'s folder at " + userFile.getAbsolutePath());
                 fileConfiguration.set("id", "USR_" + VGiveall.randomID(8) + "-" + VGiveall.randomID(8) + "@" + VGiveall.randomID(8));
                 fileConfiguration.save(userFile);
             } catch (IOException e) {
