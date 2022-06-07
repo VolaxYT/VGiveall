@@ -1,5 +1,7 @@
 package fr.volax.vgiveall.commands;
 
+import fr.volax.vgiveall.users.User;
+import fr.volax.vgiveall.users.UserWrapper;
 import fr.volax.vgiveall.utils.ChatUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -13,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.UUID;
 
 public class VGiveallCommand implements CommandExecutor, @Nullable TabCompleter {
     @Override
@@ -25,7 +28,21 @@ public class VGiveallCommand implements CommandExecutor, @Nullable TabCompleter 
             player.sendMessage("§cIl vous est impossible d'accéder à cette commande !");
             return false;
         }
-        // /giveaway give all DIRT 64
+
+        if(args.length == 2){
+            if(args[0].equalsIgnoreCase("getuser")){
+                if(!Bukkit.getOfflinePlayer(args[1]).hasPlayedBefore()) {
+                    ChatUtil.sendMessage(player, "§eAttention ! Le joueur " + args[1] + " ne s'est jamais connecté sur le serveur.");
+                    return false;
+                }
+                User user = UserWrapper.getUser(Bukkit.getOfflinePlayer(args[1]).getUniqueId());
+                player.sendMessage("§6=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="+
+                        "\n§6Informations de §e" + args[1] +
+                        "\n§6ID: §e" + user.getId() +
+                        "\n§6=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+            }
+        }
+
         if(args.length == 4){
             if(args[0].equalsIgnoreCase("give")){
                 if(args[1].equalsIgnoreCase("all")){

@@ -4,7 +4,7 @@ version: 1.0-SNAPSHOT
 author: Volax
 api-version: 1.18
 database: false
-description: A minecraft plugin who manage all of giveable actions
+description: A minecraft plugin who help you to do givealls on your server
 website: https://github.com/VolaxYT
 commands:
   giveall:

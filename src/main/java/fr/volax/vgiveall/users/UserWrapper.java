@@ -10,18 +10,19 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class UserWrapper {
     private static final List<User> usersInMemory = new ArrayList<>();
 
-    public static User getUser(Player player){
-        File userFile = new File(VGiveall.getInstance().usersFolder + "/" + player.getUniqueId().toString() + ".yml");
+    public static User getUser(UUID uuid){
+        File userFile = new File(VGiveall.getInstance().usersFolder + "/" + uuid.toString() + ".yml");
         FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(userFile);
 
         if(!userFile.exists()){
             try {
                 userFile.createNewFile();
-                ChatUtil.logMessage("Creation of " + player.getName() + "'s folder at " + userFile.getAbsolutePath().toString());
+                ChatUtil.logMessage("Creation of " + uuid.toString() + "'s folder at " + userFile.getAbsolutePath().toString());
                 fileConfiguration.set("id", "USR_" + VGiveall.randomID(8) + "-" + VGiveall.randomID(8) + "@" + VGiveall.randomID(8));
                 fileConfiguration.save(userFile);
             } catch (IOException e) {
@@ -35,7 +36,7 @@ public class UserWrapper {
                 return user;
         }
 
-        User user = new User(userFile, player, id);
+        User user = new User(userFile, uuid, id);
         usersInMemory.add(user);
         return user;
     }
