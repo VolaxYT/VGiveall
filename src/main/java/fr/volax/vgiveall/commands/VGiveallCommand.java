@@ -14,6 +14,8 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -75,7 +77,39 @@ public class VGiveallCommand implements CommandExecutor, @Nullable TabCompleter 
 
     @Override
     public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String s, @NotNull String[] args) {
-        // TODO check TODO.volax for args list
+        List<String> result = new ArrayList<>();
+
+        if(args.length == 1){
+            for(String str : new ArrayList<>(Arrays.asList("give", "getUser"))){
+                if(str.toLowerCase().startsWith(args[0].toLowerCase())){
+                    result.add(str);
+                }
+            }
+            return result;
+        }
+
+        if(args.length == 2){
+            if(args[0].equalsIgnoreCase("give")){
+                for(String str : new ArrayList<>(Arrays.asList("all"))){
+                    if(str.toLowerCase().startsWith(args[1].toLowerCase())){
+                        result.add(str);
+                    }
+                }
+                return result;
+            }
+        }
+
+        if(args.length == 3){
+            if(args[0].equalsIgnoreCase("give")){
+                for(Material material : Material.values()){
+                    if(material.toString().toLowerCase().startsWith(args[2].toLowerCase())){
+                        result.add(material.toString());
+                    }
+                }
+                return result;
+            }
+        }
+
         return null;
     }
 
