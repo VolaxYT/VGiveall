@@ -1,9 +1,11 @@
 package fr.volax.vgiveall;
 
 import fr.volax.vgiveall.commands.VGiveallCommand;
+import fr.volax.vgiveall.givealls.GiveallWrapper;
 import fr.volax.vgiveall.listeners.PlayerListener;
 import fr.volax.vgiveall.utils.*;
 import lombok.Getter;
+import lombok.SneakyThrows;
 import org.apache.commons.lang.RandomStringUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -21,20 +23,19 @@ import java.util.Random;
  */
 public class VGiveall extends JavaPlugin {
     @Getter private static VGiveall instance;
-    @Getter private GuiManager guiManager;
     @Getter private Map<Class<? extends GuiBuilder>, GuiBuilder> registeredMenus;
 
-    public File debugFile, giveallsFolder, usersFolder;
+    @Getter private File debugFile, giveallsFolder, usersFolder;
 
+    @SneakyThrows
     public void onEnable() {
         instance = this;
         this.registeredMenus = new HashMap<>();
-        this.guiManager = new GuiManager();
-        this.debugFile = new File(getDataFolder(), "logs.txt");
-        this.usersFolder = new File(String.valueOf(getDataFolder().getAbsoluteFile()) + "/users");
-        this.giveallsFolder = new File(String.valueOf(getDataFolder().getAbsoluteFile()) + "/givealls");
 
-        ConfigBuilder configBuilder = new ConfigBuilder(new FileManager(this));
+        this.debugFile = new File(getDataFolder(), "logs.txt");
+        this.usersFolder = new File(getDataFolder().getAbsoluteFile() + "/users");
+        this.giveallsFolder = new File(getDataFolder().getAbsoluteFile() + "/givealls");
+
         this.saveDefaultConfig();
 
         this.getCommand("giveall").setExecutor(new VGiveallCommand());
@@ -43,28 +44,23 @@ public class VGiveall extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new GuiManager(), this);
         this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
 
-        if(!debugFile.exists()) {
-            try {
-                debugFile.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        if(!debugFile.exists())
+            debugFile.createNewFile();
 
         if(!usersFolder.exists()){
             usersFolder.mkdir();
-            ChatUtil.logMessage("Creation of users folder at " + usersFolder.getAbsolutePath().toString());
+            ChatUtil.logMessage("Creation of users folder at " + usersFolder.getAbsolutePath());
         }
 
-        if(!usersFolder.exists()){
-            usersFolder.mkdir();
-            ChatUtil.logMessage("Creation of givealls folder at " + giveallsFolder.getAbsolutePath().toString());
+        if(!giveallsFolder.exists()){
+            giveallsFolder.mkdir();
+            ChatUtil.logMessage("Creation of givealls folder at " + giveallsFolder.getAbsolutePath());
         }
 
         this.getServer().getConsoleSender().sendMessage("§a"+ this.getDescription().getName() + " " + this.getDescription().getVersion() + " launched successfully on a " + this.getServer().getVersion() + " server.");
     }
 
-    public static String randomID(int length) {
+    public String randomID(int length) {
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         return RandomStringUtils.random(length, characters);
     }

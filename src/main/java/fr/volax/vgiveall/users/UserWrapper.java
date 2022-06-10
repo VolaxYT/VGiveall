@@ -11,18 +11,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class UserWrapper {
+public final class UserWrapper {
     private static final List<User> usersInMemory = new ArrayList<>();
 
     public static User getUser(UUID uuid){
-        File userFile = new File(VGiveall.getInstance().usersFolder + "/" + uuid.toString() + ".yml");
+        File userFile = new File(VGiveall.getInstance().getUsersFolder() + "/" + uuid.toString() + ".yml");
         FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(userFile);
 
         if(!userFile.exists()){
             try {
                 userFile.createNewFile();
                 ChatUtil.logMessage("Creation of " + uuid + "'s folder at " + userFile.getAbsolutePath());
-                fileConfiguration.set("id", "USR_" + VGiveall.randomID(8) + "-" + VGiveall.randomID(8) + "@" + VGiveall.randomID(8));
+                fileConfiguration.set("id", "USR_" + VGiveall.getInstance().randomID(8) + "-" + VGiveall.getInstance().randomID(8) + "@" + VGiveall.getInstance().randomID(8));
                 fileConfiguration.save(userFile);
             } catch (IOException e) {
                 e.printStackTrace();

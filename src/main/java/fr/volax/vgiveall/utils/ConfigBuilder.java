@@ -1,6 +1,7 @@
 package fr.volax.vgiveall.utils;
 
 import fr.volax.vgiveall.VGiveall;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 
@@ -9,11 +10,10 @@ import java.util.List;
 
 public class ConfigBuilder {
     public        FileManager   configs;
-    public static ConfigBuilder instance;
+    @Getter private static ConfigBuilder instance = new ConfigBuilder(new FileManager(VGiveall.getInstance()));
 
-    public ConfigBuilder(FileManager fileManager) {
+    private ConfigBuilder(FileManager fileManager) {
         this.configs = fileManager;
-        instance = this;
     }
 
     public String getString(String path, String config){

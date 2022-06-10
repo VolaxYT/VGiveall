@@ -1,6 +1,7 @@
 package fr.volax.vgiveall.utils;
 
 import fr.volax.vgiveall.VGiveall;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,7 +11,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class GuiManager implements Listener {
+public final class GuiManager implements Listener {
+    @Getter private static final GuiManager instance = new GuiManager();
 
     @EventHandler
     public void onClick(InventoryClickEvent event){

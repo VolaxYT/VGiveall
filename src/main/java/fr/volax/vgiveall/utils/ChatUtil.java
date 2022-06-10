@@ -2,6 +2,7 @@ package fr.volax.vgiveall.utils;
 
 import fr.volax.vgiveall.VGiveall;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 
 import java.io.FileWriter;
@@ -14,7 +15,7 @@ public class ChatUtil {
     public static final String PREFIX = ConfigBuilder.getInstance().getString("prefix");
 
     public static void sendMessage(CommandSender sender, String message){
-        sender.sendMessage(PREFIX + " " + message);
+        sender.sendMessage(ChatColor.translateAlternateColorCodes('&', PREFIX + " " + message));
     }
 
     public static void consoleMessage(String message){
@@ -23,7 +24,7 @@ public class ChatUtil {
 
     public static void logMessage(String message){
         try {
-            PrintWriter writer = new PrintWriter(new FileWriter(VGiveall.getInstance().debugFile, true), true);
+            PrintWriter writer = new PrintWriter(new FileWriter(VGiveall.getInstance().getDebugFile(), true), true);
             if (!message.equals(""))
                 writer.write("[" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()) + "] " + message.replaceAll("§e", "").replaceAll("§6", ""));
             writer.write(System.getProperty("line.separator"));
@@ -34,6 +35,6 @@ public class ChatUtil {
     }
 
     public static void broadcastMessage(String message){
-        Bukkit.broadcastMessage(PREFIX + " " + message);
+        Bukkit.getServer().getOnlinePlayers().forEach(player -> player.sendMessage(ChatColor.translateAlternateColorCodes('&', PREFIX + " " + message)));
     }
 }

@@ -33,14 +33,12 @@ Commande /giveall getuser <JOUEUR>:
     -> permet de voir dans un menu le nombre de giveall que l'admin à start/programmer/participer/annuler/annulé manuellement
     -> liste des giveall & liste des items give/programmé
 
-Commande /giveall getgivealls:
+Commande /giveall list:
     -> obtenir la liste des givealls avec la date, l'admin qui a start et l'unique ID
 
-Commande /giveall getgiveall <ID>:
+Commande /giveall info <ID>:
     -> permet d'obtenir toute les infos d'un giveall en particulié
     -> l'admin qui a start, si c'est programmé ou non, l'état actuel, la liste des items qui a été give/qui vont être give, tout les admins qui ont intéragis avec le dit giveall
     chaque item qui l'a ajouté, quand et sa position dans le giveall, les conditions pour participer à l'event, l'heure et le jour
     -> Si giveall est à venir => possibilité d'annuler le giveall, de modifier la liste des items (quantité, position, des nouveaux items, retirer des items), de modifier les conditions pour
     participer au giveall, de reprogrammer le giveall (modifier l'heure et le jour)
-
-dev -> giveall id = 'GV_ + randomID(4)'

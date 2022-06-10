@@ -3,7 +3,6 @@ package fr.volax.vgiveall.users;
 import lombok.Data;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.util.UUID;
