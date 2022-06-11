@@ -2,6 +2,7 @@ package fr.volax.vgiveall.givealls;
 
 import fr.volax.vgiveall.VGiveall;
 import fr.volax.vgiveall.items.Item;
+import fr.volax.vgiveall.items.ItemWrapper;
 import fr.volax.vgiveall.users.UserWrapper;
 import fr.volax.vgiveall.utils.ChatUtil;
 import lombok.Getter;
@@ -13,21 +14,15 @@ import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public final class GiveallWrapper {
-    private final List<Giveall> giveallsInMemory;
     @Getter private static final GiveallWrapper instance = new GiveallWrapper();
 
     @Getter @Setter private Giveall currentGiveall;
     @Getter @Setter private boolean giveallNow;
 
     private GiveallWrapper() {
-        giveallsInMemory = new ArrayList<>();
-
         this.currentGiveall = null;
         this.giveallNow = false;
     }
@@ -58,7 +53,7 @@ public final class GiveallWrapper {
             fileConfiguration.save(giveallFile);
         }
 
-        Giveall giveall = new Giveall.Builder()
+        return new Giveall.Builder()
                 .withFile(giveallFile)
                 .withId(giveallID)
                 .withAdminName(player.getName())
@@ -67,9 +62,6 @@ public final class GiveallWrapper {
                 .withCreationDate(date)
                 .withStartDate(date)
                 .build();
-
-        giveallsInMemory.add(giveall);
-        return giveall;
     }
 
     public Giveall getGiveall(String id) {
@@ -80,12 +72,7 @@ public final class GiveallWrapper {
 
         FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(giveallFile);
 
-        for(Giveall giveall : giveallsInMemory){
-            if(giveall.getId().equals(id))
-                return giveall;
-        }
-
-        Giveall giveall = new Giveall.Builder()
+        return new Giveall.Builder()
                 .withFile(giveallFile)
                 .withId(id)
                 .withAdminName((String) fileConfiguration.getList("createdBy").get(0))
@@ -94,20 +81,8 @@ public final class GiveallWrapper {
                 .withCreationDate(fileConfiguration.getString("creationDate"))
                 .withStartDate(fileConfiguration.getString("startDate"))
                 .withEndDate(fileConfiguration.getString("endDate"))
-                .withItemsGave((List<Item>) fileConfiguration.getList("items"))
+                .withItemsGave(ItemWrapper.getInstance().parseConfig(fileConfiguration))
                 .build();
-        giveallsInMemory.add(giveall);
-        return giveall;
-    }
-
-    @SneakyThrows
-    public void addItem(Item item, Giveall giveall){
-        FileConfiguration fileConfiguration = giveall.getFileConfiguration();
-
-        List<Item> items = (List<Item>) fileConfiguration.getList("items");
-        items.add(item);
-        fileConfiguration.set("items", items);
-        fileConfiguration.save(giveall.getFile());
     }
 
     @SneakyThrows

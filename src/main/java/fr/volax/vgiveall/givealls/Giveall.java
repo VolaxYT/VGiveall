@@ -58,16 +58,22 @@ public class Giveall {
         }
 
         public Builder withStartDate(String startDate) {
+            if(startDate == null) return this;
+
             this.startDate = startDate;
             return this;
         }
 
         public Builder withEndDate(String endDate){
+            if(endDate == null) return this;
+
             this.endDate = endDate;
             return this;
         }
 
         public Builder withItemsGave(List<Item> itemsGave){
+            if(itemsGave == null) return this;
+
             this.itemsGave = itemsGave;
             return this;
         }

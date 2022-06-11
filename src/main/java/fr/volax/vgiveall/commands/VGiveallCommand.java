@@ -4,6 +4,7 @@ import fr.volax.vgiveall.VGiveall;
 import fr.volax.vgiveall.givealls.Giveall;
 import fr.volax.vgiveall.givealls.GiveallWrapper;
 import fr.volax.vgiveall.items.Item;
+import fr.volax.vgiveall.items.ItemWrapper;
 import fr.volax.vgiveall.users.User;
 import fr.volax.vgiveall.users.UserWrapper;
 import fr.volax.vgiveall.utils.ChatUtil;
@@ -48,12 +49,7 @@ public class VGiveallCommand implements CommandExecutor, TabCompleter {
                 GiveallWrapper.getInstance().setCurrentGiveall(giveall);
 
                 ChatUtil.broadcastMessage("&eUn giveall vient d'être lancé !");
-                player.sendMessage("§6=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="+
-                        "\n§6Informations du giveall §e" + giveall.getId() +
-                        "\n§6Crée par: §e" + giveall.getAdminName() + " §6| §e" + giveall.getAdminID() +
-                        "\n§6Date de création: §e" + giveall.getCreationDate() +
-                        "\n§6Status: §e" + giveall.getGiveallStatus() +
-                        "\n§6=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
+                ChatUtil.sendMessage(player, "&eID du giveall: &6" + giveall.getId());
                 return false;
             }
 
@@ -64,8 +60,8 @@ public class VGiveallCommand implements CommandExecutor, TabCompleter {
                 }
 
                 GiveallWrapper.getInstance().toggle();
-                GiveallWrapper.getInstance().setCurrentGiveall(null);
                 GiveallWrapper.getInstance().syncEndDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()), GiveallWrapper.getInstance().getCurrentGiveall());
+                GiveallWrapper.getInstance().setCurrentGiveall(null);
                 ChatUtil.broadcastMessage("&eLe giveall vient de s'arrêter !");
                 return false;
             }
@@ -102,6 +98,9 @@ public class VGiveallCommand implements CommandExecutor, TabCompleter {
                         "\n§6Date de début: §e" + giveall.getStartDate() +
                         "\n§6Date de fin: §e" + giveall.getEndDate() +
                         "\n§6Status: §e" + giveall.getGiveallStatus() +
+                        "\n "+
+                        "\n§6Items: §e" +
+                        (ItemWrapper.getInstance().toString(giveall.getItemsGave()) == null ? "\n§6- §eAucun item n'a encore été give." : "\n" + ItemWrapper.getInstance().toString(giveall.getItemsGave())) +
                         "\n§6=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=");
                 return false;
             }
@@ -131,8 +130,8 @@ public class VGiveallCommand implements CommandExecutor, TabCompleter {
                     for(Player player1 : Bukkit.getServer().getOnlinePlayers())
                         player1.getInventory().addItem(itemStack);
 
-                    GiveallWrapper.getInstance().addItem(new Item.Builder()
-                            .withItemStack(itemStack)
+                    ItemWrapper.getInstance().addItem(new Item.Builder()
+                            .withItemStack(new ItemBuilder(itemStack.getType(), Integer.parseInt(args[3])).toItemStack())
                             .withDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()))
                             .withAdminName(player.getName())
                             .withAdminID(UserWrapper.getUser(player.getUniqueId()).getId())

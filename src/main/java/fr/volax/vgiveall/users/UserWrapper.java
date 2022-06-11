@@ -7,13 +7,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 public final class UserWrapper {
-    private static final List<User> usersInMemory = new ArrayList<>();
-
     public static User getUser(UUID uuid){
         File userFile = new File(VGiveall.getInstance().getUsersFolder() + "/" + uuid.toString() + ".yml");
         FileConfiguration fileConfiguration = YamlConfiguration.loadConfiguration(userFile);
@@ -29,14 +25,6 @@ public final class UserWrapper {
             }
         }
         String id = fileConfiguration.getString("id");
-
-        for(User user : usersInMemory){
-            if(user.getId().equals(id))
-                return user;
-        }
-
-        User user = new User(userFile, uuid, id);
-        usersInMemory.add(user);
-        return user;
+        return new User(userFile, uuid, id);
     }
 }
