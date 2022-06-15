@@ -1,8 +1,8 @@
 package fr.volax.vgiveall;
 
 import fr.volax.vgiveall.commands.VGiveallCommand;
-import fr.volax.vgiveall.givealls.GiveallWrapper;
 import fr.volax.vgiveall.listeners.PlayerListener;
+import fr.volax.vgiveall.menu.GiveallInfosMenu;
 import fr.volax.vgiveall.utils.*;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -10,10 +10,8 @@ import org.apache.commons.lang.RandomStringUtils;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 /**
  * VGiveall for Minecraft 1.18!
@@ -43,6 +41,8 @@ public class VGiveall extends JavaPlugin {
 
         this.getServer().getPluginManager().registerEvents(new GuiManager(), this);
         this.getServer().getPluginManager().registerEvents(new PlayerListener(), this);
+
+        GuiManager.getInstance().addMenu(new GiveallInfosMenu());
 
         if(!debugFile.exists())
             debugFile.createNewFile();

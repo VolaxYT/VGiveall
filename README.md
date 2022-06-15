@@ -11,7 +11,6 @@ C'est un projet personnel donc je dev à mon rythme !
 - Command to give items to all players
   - Permission : vgiveall.giveall.use
 - Log system with all players, all givealls
-- soon 
 
 
 

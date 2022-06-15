@@ -5,10 +5,13 @@ import fr.volax.vgiveall.givealls.Giveall;
 import fr.volax.vgiveall.givealls.GiveallWrapper;
 import fr.volax.vgiveall.items.Item;
 import fr.volax.vgiveall.items.ItemWrapper;
+import fr.volax.vgiveall.menu.GiveallInfosMenu;
 import fr.volax.vgiveall.users.User;
 import fr.volax.vgiveall.users.UserWrapper;
 import fr.volax.vgiveall.utils.ChatUtil;
+import fr.volax.vgiveall.utils.GuiManager;
 import fr.volax.vgiveall.utils.ItemBuilder;
+import fr.volax.vgiveall.utils.MetadataUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -90,6 +93,9 @@ public class VGiveallCommand implements CommandExecutor, TabCompleter {
                     return false;
                 }
                 Giveall giveall = GiveallWrapper.getInstance().getGiveall(args[1]);
+
+                MetadataUtil.setMetadata("player.givealls.lastid", giveall.getId(), player);
+                GuiManager.getInstance().open(player, GiveallInfosMenu.class);
 
                 player.sendMessage("§6=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-="+
                         "\n§6Informations du giveall §e" + giveall.getId() +

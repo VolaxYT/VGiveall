@@ -37,7 +37,7 @@ public final class GuiManager implements Listener {
         if(!VGiveall.getInstance().getRegisteredMenus().containsKey(gClass)) return;
 
         GuiBuilder menu = VGiveall.getInstance().getRegisteredMenus().get(gClass);
-        Inventory inv = Bukkit.createInventory(null, menu.getSize(), menu.name());
+        Inventory inv = Bukkit.createInventory(null, menu.getSize(player), menu.name());
         menu.contents(player, inv);
 
         new BukkitRunnable() {
