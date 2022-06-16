@@ -51,6 +51,8 @@ public class GiveallInfosMenu implements GuiBuilder {
                 whereStart++;
             }
         }
+
+        inv.setItem(4,new ItemBuilder(Material.DIAMOND, 1).setName("§6Informations du giveall §e" + giveall.getId()).setLore("§6Crée par: §e" + giveall.getAdminName(), "§6Date de création: §e" + giveall.getCreationDate(), "§6Date de début: §e" + giveall.getStartDate(), "§6Date de fin: §e" + giveall.getEndDate(), "§6Status: §e" + giveall.getGiveallStatus()).toItemStack());
     }
 
     @Override
